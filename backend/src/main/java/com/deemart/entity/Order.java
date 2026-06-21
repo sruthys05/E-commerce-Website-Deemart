@@ -2,7 +2,6 @@ package com.deemart.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -33,6 +32,17 @@ public class Order {
     @Column(columnDefinition = "TEXT")
     private String paymentInfo;
 
+    // Card payment details
+    private String cardHolderName;
+    private String cardType;
+    private String cardBrand;
+    private String last4;
+    private String expiryMonth;
+    private String expiryYear;
+
+    @Column(unique = true)
+    private String transactionId;
+
     public Order() {
         this.createdAt = LocalDateTime.now();
     }
@@ -61,4 +71,18 @@ public class Order {
     public void setShippingAddress(String shippingAddress) { this.shippingAddress = shippingAddress; }
     public String getPaymentInfo() { return paymentInfo; }
     public void setPaymentInfo(String paymentInfo) { this.paymentInfo = paymentInfo; }
+    public String getCardHolderName() { return cardHolderName; }
+    public void setCardHolderName(String cardHolderName) { this.cardHolderName = cardHolderName; }
+    public String getCardType() { return cardType; }
+    public void setCardType(String cardType) { this.cardType = cardType; }
+    public String getCardBrand() { return cardBrand; }
+    public void setCardBrand(String cardBrand) { this.cardBrand = cardBrand; }
+    public String getLast4() { return last4; }
+    public void setLast4(String last4) { this.last4 = last4; }
+    public String getExpiryMonth() { return expiryMonth; }
+    public void setExpiryMonth(String expiryMonth) { this.expiryMonth = expiryMonth; }
+    public String getExpiryYear() { return expiryYear; }
+    public void setExpiryYear(String expiryYear) { this.expiryYear = expiryYear; }
+    public String getTransactionId() { return transactionId; }
+    public void setTransactionId(String transactionId) { this.transactionId = transactionId; }
 }

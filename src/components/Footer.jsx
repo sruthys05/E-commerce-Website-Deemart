@@ -31,9 +31,9 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-medium mb-6">Support</h3>
             <ul className="space-y-3 text-sm opacity-80">
-              <li>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</li>
-              <li>exclusive@gmail.com</li>
-              <li>+88015-88888-9999</li>
+              <li>111 abc city, abc, DH 1515, india.</li>
+              <li>connectdeemart@gmail.com</li>
+              <li>+91 123456789</li>
             </ul>
           </div>
 

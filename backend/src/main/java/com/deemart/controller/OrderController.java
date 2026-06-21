@@ -35,12 +35,20 @@ public class OrderController {
         double total = body.getTotal() == null ? 0.0 : body.getTotal();
 
         String shippingAddress = body.getShippingAddress() == null ? "" : body.getShippingAddress();
-        // Payment here is intentionally minimal: frontend only confirms payment received.
         String paymentInfo = body.getPaymentInfo() == null ? "" : body.getPaymentInfo();
 
+        // Card payment details
+        String cardHolderName = body.getCardHolderName();
+        String cardType = body.getCardType();
+        String cardBrand = body.getCardBrand();
+        String last4 = body.getLast4();
+        String expiryMonth = body.getExpiryMonth();
+        String expiryYear = body.getExpiryYear();
+
         return ResponseEntity.ok(
-                orderService.createOrder(sessionId, subtotal, shipping, tax, discount, total, shippingAddress, paymentInfo)
+                orderService.createOrder(sessionId, subtotal, shipping, tax, discount, total,
+                        shippingAddress, paymentInfo,
+                        cardHolderName, cardType, cardBrand, last4, expiryMonth, expiryYear)
         );
     }
 }
-

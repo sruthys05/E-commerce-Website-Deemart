@@ -19,6 +19,7 @@ const CheckoutPage = () => {
   const [cartCount, setCartCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const [, setCardDetails] = useState(null);
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [couponError, setCouponError] = useState("");
@@ -78,13 +79,24 @@ const CheckoutPage = () => {
     if (validateShipping()) setStep(2);
   };
 
-  const handlePaymentSubmit = async ({ paymentInfo } = { paymentInfo: "PAID" }) => {
+  const handlePaymentSubmit = async (cardData) => {
     setProcessing(true);
+    const paymentPayload = {
+      paymentInfo: "PAID",
+      cardHolderName: cardData.cardHolderName || "",
+      cardType: cardData.cardType || "Card",
+      cardBrand: cardData.cardBrand || "unknown",
+      last4: cardData.last4 || "",
+      maskedNumber: cardData.maskedNumber || "",
+      expiryMonth: cardData.expiryMonth || "",
+      expiryYear: cardData.expiryYear || "",
+    };
+    setCardDetails(paymentPayload);
     try {
-      // Simulate payment processing
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Simulate payment authorization
+      await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      // Create order in backend (payment already confirmed; no card data)
+      // Create order in backend with payment details
       const createRes = await createOrder({
         subtotal,
         shipping: shippingCost,
@@ -92,7 +104,13 @@ const CheckoutPage = () => {
         discount,
         total,
         shippingAddress: JSON.stringify(shipping),
-        paymentInfo: paymentInfo || "PAID",
+        paymentInfo: JSON.stringify(paymentPayload),
+        cardHolderName: cardData.cardHolderName,
+        cardType: cardData.cardType,
+        last4: cardData.last4,
+        cardBrand: cardData.cardBrand,
+        expiryMonth: cardData.expiryMonth,
+        expiryYear: cardData.expiryYear,
       });
 
       // Clear cart
@@ -111,7 +129,7 @@ const CheckoutPage = () => {
               date: new Date().toISOString(),
               items: cartItems,
               shippingAddress: { ...shipping },
-              payment: { paymentInfo: paymentInfo || "PAID" },
+              payment: paymentPayload,
               subtotal,
               shipping: shippingCost,
               tax,
@@ -297,7 +315,7 @@ const CheckoutPage = () => {
                 <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
                   Securely pay with your credit/debit card
                 </p>
-                <PaymentForm onSubmit={handlePaymentSubmit} processing={processing} />
+                <PaymentForm onSubmit={handlePaymentSubmit} processing={processing} total={total} />
                 <button
                   onClick={() => setStep(1)}
                   className="mt-4 text-sm hover:underline"

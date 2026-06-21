@@ -63,7 +63,7 @@ const ContactPage = () => {
               </div>
               <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-primary)" }}>Call To Us</h3>
               <p className="text-sm mb-1" style={{ color: "var(--text-secondary)" }}>We are available 24/7, 7 days a week.</p>
-              <a href="tel:+88015888889999" className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>Phone: +88015-88888-9999</a>
+              <a href="tel:+91 1234567890" className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>Phone: +91 1234567890</a>
             </div>
             <div className="h-px mb-6" style={{ backgroundColor: "var(--border-color)" }} />
             <div className="rounded-xl p-6" style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border-color)", boxShadow: "var(--shadow-sm)" }}>
@@ -73,8 +73,8 @@ const ContactPage = () => {
               <h3 className="text-base font-semibold mb-2" style={{ color: "var(--text-primary)" }}>Write To Us</h3>
               <p className="text-sm mb-3" style={{ color: "var(--text-secondary)" }}>Fill out our form and we will contact you within 24 hours.</p>
               <div className="flex flex-col gap-1 text-sm font-medium" style={{ color: "var(--text-primary)" }}>
-                <a href="mailto:customer@exclusive.com" className="hover:underline">customer@exclusive.com</a>
-                <a href="mailto:support@exclusive.com" className="hover:underline">support@exclusive.com</a>
+                <a href="mailto:customer@deemart.com" className="hover:underline">customer@deemart.com</a>
+                <a href="mailto:support@deemart.com" className="hover:underline">support@deemart.com</a>
               </div>
             </div>
           </aside>

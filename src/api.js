@@ -54,11 +54,29 @@ export const clearCart = () =>
   tryAPI("/cart", { method: "DELETE" }, () => { localStorage.removeItem("cart"); return true; });
 
 // Orders
-export const createOrder = (payload) =>
+export const createOrder = ({
+  subtotal, shipping, tax, discount, total,
+  shippingAddress, paymentInfo,
+  cardHolderName, cardType, cardBrand, last4, expiryMonth, expiryYear
+} = {}) =>
   tryAPI(
     "/orders",
-    { method: "POST", body: JSON.stringify(payload) },
-    () => ({})
+    {
+      method: "POST",
+      body: JSON.stringify({
+        subtotal, shipping, tax, discount, total,
+        shippingAddress, paymentInfo,
+        cardHolderName, cardType, cardBrand, last4, expiryMonth, expiryYear,
+      }),
+    },
+    () => ({
+      // Fallback for when backend is unavailable
+      id: "ORD-" + Date.now().toString(36).toUpperCase(),
+      orderNumber: "ORD-" + Date.now().toString(36).toUpperCase(),
+      date: new Date().toISOString(),
+      status: "confirmed",
+      transactionId: "TX-" + Date.now().toString(36).toUpperCase(),
+    })
   );
 
 // Wishlist

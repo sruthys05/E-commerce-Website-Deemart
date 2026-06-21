@@ -10,6 +10,14 @@ public class CreateOrderRequest {
 
     private String shippingAddress;
     private String paymentInfo;
+    
+    // Card payment fields
+    private String cardHolderName;
+    private String cardType;
+    private String cardBrand;
+    private String last4;
+    private String expiryMonth;
+    private String expiryYear;
 
     public Double getSubtotal() {
         return subtotal;
@@ -66,5 +74,52 @@ public class CreateOrderRequest {
     public void setPaymentInfo(String paymentInfo) {
         this.paymentInfo = paymentInfo;
     }
-}
 
+    public String getCardHolderName() {
+        return cardHolderName;
+    }
+
+    public void setCardHolderName(String cardHolderName) {
+        this.cardHolderName = cardHolderName;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
+    }
+
+    public String getCardBrand() {
+        return cardBrand;
+    }
+
+    public void setCardBrand(String cardBrand) {
+        this.cardBrand = cardBrand;
+    }
+
+    public String getLast4() {
+        return last4;
+    }
+
+    public void setLast4(String last4) {
+        this.last4 = last4;
+    }
+
+    public String getExpiryMonth() {
+        return expiryMonth;
+    }
+
+    public void setExpiryMonth(String expiryMonth) {
+        this.expiryMonth = expiryMonth;
+    }
+
+    public String getExpiryYear() {
+        return expiryYear;
+    }
+
+    public void setExpiryYear(String expiryYear) {
+        this.expiryYear = expiryYear;
+    }
+}

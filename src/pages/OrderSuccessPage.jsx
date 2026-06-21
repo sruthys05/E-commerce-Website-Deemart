@@ -155,13 +155,47 @@ const OrderSuccessPage = () => {
 
           {/* Payment Info */}
           <div className="px-6 py-4 border-t" style={{ borderColor: "var(--border-color)" }}>
-            <h3 className="text-sm font-semibold mb-2" style={{ color: "var(--text-primary)" }}>Payment</h3>
-            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-              {order.payment?.cardType} ending in ****{order.payment?.last4}
-            </p>
-            <p className="text-xs mt-1" style={{ color: "var(--text-muted)" }}>
-              Status: <span className="text-green-600 font-medium">{order.status}</span>
-            </p>
+            <h3 className="text-sm font-semibold mb-3" style={{ color: "var(--text-primary)" }}>Payment</h3>
+            <div className="flex items-center gap-3">
+              {/* Card brand icon */}
+              <div className="w-10 h-7 rounded flex items-center justify-center text-[8px] font-bold text-white"
+                style={{
+                  backgroundColor:
+                    order.payment?.cardBrand === "visa" ? "#1A1F71" :
+                    order.payment?.cardBrand === "mastercard" ? "#1A1F71" :
+                    order.payment?.cardBrand === "amex" ? "#2E77BC" :
+                    order.payment?.cardBrand === "discover" ? "#FF6000" : "#94A3B8"
+                }}
+              >
+                {order.payment?.cardBrand === "visa" ? "VISA" :
+                 order.payment?.cardBrand === "mastercard" ? "MC" :
+                 order.payment?.cardBrand === "amex" ? "AMEX" :
+                 order.payment?.cardBrand === "discover" ? "DISC" : "💳"}
+              </div>
+              <div>
+                <p className="text-sm font-medium" style={{ color: "var(--text-primary)" }}>
+                  {order.payment?.cardType || "Card"} ending in <span className="font-mono tracking-wider">•••• {order.payment?.last4 || "0000"}</span>
+                </p>
+                <p className="text-xs" style={{ color: "var(--text-muted)" }}>
+                  Expires {order.payment?.expiryMonth || "**"}/{order.payment?.expiryYear?.slice(2) || "**"}
+                  {order.payment?.cardHolderName && <span> | {order.payment.cardHolderName}</span>}
+                </p>
+              </div>
+            </div>
+            {order.payment?.transactionId && (
+              <p className="text-xs mt-2" style={{ color: "var(--text-muted)" }}>
+                Transaction ID: <span className="font-mono">{order.payment.transactionId}</span>
+              </p>
+            )}
+            <div className="flex items-center gap-1.5 mt-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <p className="text-xs font-medium text-green-600">
+                Payment {order.status === "confirmed" ? "confirmed" : "completed"}
+              </p>
+            </div>
           </div>
         </div>
 
