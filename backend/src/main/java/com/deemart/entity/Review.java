@@ -14,6 +14,7 @@ public class Review {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Column(name = "reviewer")
     private String user;
     private int rating;
     private String date;
