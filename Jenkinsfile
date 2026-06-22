@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-```
+
 tools {
     maven 'Maven3'
     nodejs 'Node20'
@@ -41,13 +41,11 @@ stages {
 
 post {
     success {
-        echo 'Deployment Successful'
+        echo 'Success'
     }
 
     failure {
-        echo 'Pipeline failed'
+        echo 'Failed'
     }
 }
-```
-
 }
