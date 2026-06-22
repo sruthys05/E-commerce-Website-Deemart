@@ -3,8 +3,8 @@ agent any
 
 
 tools {
-    maven 'Maven3'
-    nodejs 'Node20'
+    maven 'Maven'
+    nodejs 'NodeJS'
 }
 
 stages {
